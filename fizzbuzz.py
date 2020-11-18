@@ -36,6 +36,11 @@ DEFAULT_REPLACES = {3: "Fizz", 5: "Buzz"}
 
 
 def find_replaces(n: int, replaces: Dict[int, str]):
+    """Returns list of possible replaces, e.g.
+        find_replaces(6, {2:"foo", 3:"bar"}) -> ["foo", "bar"]
+        find_replaces(8, {2:"foo", 3:"bar"}) -> ["foo"]
+        find_replaces(9, {2:"foo", 3:"bar"}) -> ["bar"]
+    """
     n_replaces = []
     for d, w in replaces.items():
         if n % d == 0:
@@ -44,6 +49,7 @@ def find_replaces(n: int, replaces: Dict[int, str]):
 
 
 def fizz_buzz(limit: int, replaces: Dict[int, str] = None):
+    """Makes generator that yields FizzBuzz game items."""
     replaces = replaces if replaces is not None else DEFAULT_REPLACES
     for n in range(1, limit + 1):
         n_replaces = find_replaces(n, replaces)
